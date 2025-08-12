@@ -1,4 +1,3 @@
-import re
 from playwright.sync_api import Page, expect
 
 
@@ -9,7 +8,6 @@ def test_ab_testing(page:Page) -> None:
 
     print("\nStarting A/B Testing test...\n")
     
-    page.goto("https://the-internet.herokuapp.com/")
     page.goto("https://the-internet.herokuapp.com/")
     page.get_by_role("link", name="A/B Testing").click()
     
