@@ -1,4 +1,3 @@
-import re
 from playwright.sync_api import Page, expect, sync_playwright
 
 def test_digest_auth_success_with_page_fixture(page: Page) -> None:
