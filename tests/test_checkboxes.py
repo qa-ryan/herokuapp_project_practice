@@ -2,8 +2,6 @@ from playwright.sync_api import Page, expect
 
 
 def test_checkboxes(page: Page) -> None:
-    
-    page.goto("https://the-internet.herokuapp.com/")
     page.get_by_role("link", name="Checkboxes").click()
     expect(page.get_by_role("heading")).to_contain_text("Checkboxes")
     
