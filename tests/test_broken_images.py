@@ -1,13 +1,13 @@
 from playwright.sync_api import Page, expect
+import pytest
 
-
-def test_example(page: Page) -> None:
+@pytest.fixture(autouse=True)
+def custom_messages(request):
+    request.node.start_msg = "---Broken Images test started ---"
+    request.node.complete_msg = "--- Broken Images test completed ---"
     
-    print("\nStarting Broken Images test...\n")
-
-    page.goto("https://the-internet.herokuapp.com/")
+def test_broken_images(page: Page) -> None:
     page.get_by_role("link", name="Broken Images").click()
-    
     expect(page.get_by_role("heading")).to_contain_text("Broken Images")
     
     images = page.locator("img")
@@ -27,6 +27,5 @@ def test_example(page: Page) -> None:
         else:
             print(f"✅ Working image: {src}")
 
-    print(f"\nTotal broken images: {broken_count}\n")
+    print(f"\nTotal broken images: {broken_count}")
     
-    print("\nBroken Images test completed successfully.\n")

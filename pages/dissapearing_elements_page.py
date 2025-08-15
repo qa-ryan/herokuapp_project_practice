@@ -1,4 +1,4 @@
-from os import name
+
 from playwright.sync_api import Page, expect
 
 class DisappearingElementsPage:
