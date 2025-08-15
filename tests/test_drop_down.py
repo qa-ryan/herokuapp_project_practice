@@ -7,7 +7,6 @@ def dropdown_page_setup(page: Page) -> None:
     
     
 # Scenario 1: Default Selection
-
 def test_dropdown_default_selection(page):
     dropdown_page_setup(page)
     print("\nStarting Scenario 1: Dropdown Default Selection test...")
