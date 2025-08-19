@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 import time
 import random
+from pathlib import Path
 
 
 def test_exit_intent(page: Page, tmp_path) -> None:
@@ -28,10 +29,12 @@ def test_exit_intent(page: Page, tmp_path) -> None:
     # Start download
     with page.expect_download() as download_info:
         chosen_link.click()
+        
     download = download_info.value
-
+    DOWNLOAD_DIR = Path(__file__).parent / "downloads"
+    DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
     # Save file
-    save_path = tmp_path / "E:/herokuapp_project/herokuapp_project_practice/download"
+    save_path = DOWNLOAD_DIR / "E:\\herokuapp_project\\herokuapp_project_practice\\download"
     download.save_as(str(save_path))
 
     # Assert file exists
