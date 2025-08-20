@@ -5,11 +5,11 @@ from urllib.parse import urljoin
 
 
 def test_disappearing_elements_test_case_1(page: Page) -> None:
-    
+
     dissapearing_elements_page = DisappearingElementsPage(page)
     
     print("\nStarting Disappearing Elements test...\n")
-    page.goto("https://the-internet.herokuapp.com/")
+    
     page.get_by_role("link", name="Disappearing Elements").click()
     expect(page.get_by_role("heading")).to_contain_text("Disappearing Elements")
     

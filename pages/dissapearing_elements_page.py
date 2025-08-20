@@ -2,10 +2,11 @@
 from playwright.sync_api import Page, expect
 
 class DisappearingElementsPage:
-    
+    URL = "https://the-internet.herokuapp.com/dissapearing_elements"
+
     def __init__(self, page:Page):
         self.page = page
-            
+    
     def get_gallery_url(self):
         self.page.get_by_role("link", name="Gallery").click()
         gallery_url = self.page.url
