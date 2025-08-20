@@ -1,11 +1,14 @@
 import pytest
 from playwright.sync_api import sync_playwright 
 from pages.base_page import BasePage
+import pytest
+import os
+from datetime import datetime
 
 @pytest.fixture(scope="session")
 def browser():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False, slow_mo=300)
+        browser = p.chromium.launch(headless=False)
         yield browser
         browser.close()
         
@@ -24,5 +27,13 @@ def page(browser, request):
     base.log_status(complete_msg)
     page.close()
     
-
-    
+"""@pytest.fixture(scope="function", autouse=True)
+def screeshot_on_failure(page, request):
+    yield
+    if request.node.rep_call.failed:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        file_name = f"screenshot_{request.node.name}_{timestamp}.png"
+        path = os.path.join("reports", file_name)
+        page.screenshot(path=path)
+        print(f"\n[!] Screenshot saved to {path}")
+    """
