@@ -8,7 +8,7 @@ from datetime import datetime
 @pytest.fixture(scope="session")
 def browser():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=False, slow_mo=3000)
         yield browser
         browser.close()
         

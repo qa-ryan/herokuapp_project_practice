@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+from pages.add_remove_elements_page import AddRemovePage
 import pytest
 
 @pytest.fixture(autouse=True)
@@ -6,16 +6,14 @@ def custom_messages(request):
     request.node.start_msg = "--- Add Remove Elements test started ---"
     request.node.complete_msg = "--- Add Remove Elements test completed ---"
 
-def test_add_remove_elements(page:Page) -> None:    
-    page.goto("https://the-internet.herokuapp.com/")
-    page.get_by_role("link", name="Add/Remove Elements").click()
+def test_add_remove_elements(page) -> None:    
+    add_remove = AddRemovePage(page)
     
-    expect(page.get_by_role("heading")).to_contain_text("Add/Remove Elements")
-
-    for i in range(10):
-        page.get_by_role("button", name="Add Element").click()
-        print(f"Added element {i + 1}")
+    """Load the page then validate Page Title"""
+    add_remove.load()
+    add_remove.validate_page_content()
     
-    for j in range(4):
-        page.get_by_text("Delete").nth(0).click()
-        print(f"Deleted element {j + 1}")
+    """Add and Remove elemet"""
+    add_remove.add_element()
+    add_remove.delete_element()
+    

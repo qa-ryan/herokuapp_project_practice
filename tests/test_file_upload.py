@@ -18,7 +18,6 @@ def sample_file(tmp_path, request):
 def test_file_upload(page, sample_file):
     upload = UploadPage(page)
     upload.load()
-    page.pause()
     upload.upload_file(sample_file)
     
     uploaded_name = upload.get_uploaded_filename()

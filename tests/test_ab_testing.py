@@ -8,7 +8,7 @@ def custom_messages(request):
 
 def test_ab_testing(page):
     ab_page = ABTestingPage(page)
-    ab_page.goto()
+    ab_page.load()
     variation = ab_page.validate_page_content()
 
     assert variation in ["Variation A", "Variation B"]

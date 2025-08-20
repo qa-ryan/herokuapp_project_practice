@@ -14,8 +14,8 @@ class ABTestingPage:
 
     def __init__(self, page: Page):
         self.page = page
-
-    def goto(self):
+    
+    def load(self):
         """Navigate to the A/B Testing page"""
         self.page.goto(self.URL)
 

@@ -2,6 +2,7 @@ from playwright.sync_api import Page, expect
 import pytest
 import random
 import string
+import time
 
 @pytest.fixture(autouse=True)
 def custom_messages(request):
@@ -56,11 +57,10 @@ def test_remove_add(page: Page) -> None:
 def test_enable_disable(page: Page) -> None:
     print("\nTest Case 2: Enable/Disable test started...")
     page.get_by_role("link", name="Dynamic Controls").click()
-    
+    time.sleep(5)
     for i in range(5):
-        
         random_text = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
-
+        
         if page.get_by_role("button", name="Enable").is_visible():
             expect(page.get_by_role("button", name="Enable")).to_be_visible()
             page.get_by_role("button", name="Enable").click()
