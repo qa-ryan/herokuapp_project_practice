@@ -1,8 +1,12 @@
-import re
+import pytest
 from playwright.sync_api import Page, expect, TimeoutError as PlaywrightTimeoutError
 from pages.dissapearing_elements_page import DisappearingElementsPage
 from urllib.parse import urljoin
 
+@pytest.fixture(autouse=True)
+def custom_messages(request):
+    request.node.start_msg = "--- Disappearing Element test started ---"
+    request.node.complete_msg = "--- Disappearing Element test completed ---"
 
 def test_disappearing_elements_test_case_1(page: Page) -> None:
 

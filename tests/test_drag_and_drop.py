@@ -1,7 +1,12 @@
 from playwright.sync_api import Page, expect
+import pytest 
 
+@pytest.fixture(autouse=True)
+def custom_messages(request):
+    request.node.start_msg = "--- Drag and Drop test started ---"
+    request.node.complete_msg = "--- Drag and Drop test completed ---"
+    
 def test_drag_and_drop(page:Page) -> None:
-    page.goto("https://the-internet.herokuapp.com/")
     page.get_by_role("link", name="Drag and Drop").click()
     
     col_a_role = page.text_content("#column-a header")

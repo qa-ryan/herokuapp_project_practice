@@ -1,5 +1,10 @@
-import re
+import pytest
 from playwright.sync_api import Page, expect
+
+@pytest.fixture(autouse=True)
+def custom_messages(request):
+    request.node.start_msg = "--- Dropdown test started ---"
+    request.node.complete_msg = "--- Dropdown test completed ---"
 
 def dropdown_page_setup(page: Page) -> None:
     page.get_by_role("link", name="Dropdown").click()
