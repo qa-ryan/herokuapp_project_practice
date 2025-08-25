@@ -13,24 +13,7 @@ def test_frames_pages(page: Page) -> None:
     expect(page.get_by_role("list")).to_contain_text("Nested Frames")
     expect(page.get_by_role("list")).to_contain_text("iFrame")
     
-"""def test_nested_frames(page: Page) -> None:
-    page.get_by_role("link", name="Frames", exact=True).click()
-    page.get_by_role("link", name="Nested Frames").click()
-    bottom = page.locator("frame[name=\"frame-bottom\"]").content_frame.get_by_text("BOTTOM")
-    print(bottom)
     
-def test_iframes(page: Page) -> None:
-    page.get_by_role("link", name="Frames", exact=True).click()
-    page.get_by_role("link", name="iFrame").click()
-    
-    
-    page.locator("frame[name=\"frame-top\"]").content_frame.locator("frame[name=\"frame-left\"]").content_frame.get_by_text("LEFT").click()
-    page.locator("frame[name=\"frame-top\"]").content_frame.locator("frame[name=\"frame-middle\"]").content_frame.locator("body").click()
-    page.locator("frame[name=\"frame-top\"]").content_frame.locator("frame[name=\"frame-right\"]").content_frame.get_by_text("RIGHT").click()
-    page.locator("frame[name=\"frame-bottom\"]").content_frame.get_by_text("BOTTOM").click()
-    page.get_by_role("link", name="iFrame").click()
-    expect(page.get_by_role("heading")).to_contain_text("An iFrame containing the TinyMCE WYSIWYG Editor")
-"""
 def test_count_frames(page: Page):
     # Example URL with nested frames (The Internet Herokuapp)
     page.goto("https://the-internet.herokuapp.com/nested_frames")
