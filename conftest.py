@@ -27,6 +27,8 @@ def page(browser, request):
     base.log_status(complete_msg)
     page.close()
     
+
+    
 """@pytest.fixture(scope="function", autouse=True)
 def screeshot_on_failure(page, request):
     yield
